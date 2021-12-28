@@ -40,7 +40,7 @@ jobs:
           dotnet-version: 5.0.x
       # Runs a single command using the runners shell
       - name: Publish .NET Core Project
-        run: dotnet publish BlazorMatchGame.csproj -c Release -o release --nologo
+        run: dotnet publish BlazorMatchGame/BlazorMatchGame.csproj -c Release -o release --nologo
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.7
