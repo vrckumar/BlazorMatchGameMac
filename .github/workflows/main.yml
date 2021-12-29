@@ -25,15 +25,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
-      - name: Current directory
-        run: pwd
-      - name: Change directory
-        run: cd BlazorMatchGame
-      - name: Current directory
-        run: pwd
-      - name: List directory
-        run: ls -lhrt
-
       - name: Setup .NET Core SDK
         uses: actions/setup-dotnet@v1.9.0
         with:
@@ -42,6 +33,10 @@ jobs:
       - name: Publish .NET Core Project
         run: dotnet publish BlazorMatchGame/BlazorMatchGame.csproj -c Release -o release --nologo
 
+# changes the base-tag in index.html from '/' to 'BlazorGitHubPagesDemo' to match GitHub Pages repository subdirectory
+      - name: Change base-tag in index.html from / to BlazorMatchGameMac
+        run: sed -i 's/<base href="\/" \/>/<base href="\/BlazorMatchGameMac\/" \/>/g' release/wwwroot/index.html
+      
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.7
         with:
